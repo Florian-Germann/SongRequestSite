@@ -62,14 +62,22 @@ function pruefeUndSenden() {
       });
   }
   
-  // Ältesten Wunsch löschen
-  function aeltestenWunschLoeschen() {
-    fetch("/wunsch/ältester", { method: "DELETE" })
-      .then(res => res.json())
-      .then(data => {
-        if (data.erfolg) ladeWuensche();
-      });
-  }
+// Ältesten Wunsch löschen
+function loescheAeltesten() {
+  fetch('/wuensche', {
+    method: 'DELETE'
+  })
+    .then(response => {
+      if (response.ok) {
+        ladeWuensche(); // Tabelle neu laden
+      } else {
+        alert("Fehler beim Löschen.");
+      }
+    })
+    .catch(error => {
+      console.error("Fehler beim Löschen:", error);
+    });
+}
   
   // Wenn auf wuensche.html → beim Laden Daten holen
   if (window.location.pathname.endsWith("wuensche.html")) {

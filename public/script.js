@@ -71,6 +71,7 @@ function pruefeUndSenden() {
         });
       });
   }
+
   
 // Ältesten Wunsch löschen
 function loescheAeltesten() {
@@ -93,4 +94,5 @@ function loescheAeltesten() {
   if (window.location.pathname.endsWith("wuensche.html")) {
     window.onload = ladeWuensche;
   }
-  
+
+setInterval(ladeWuensche, 5000); // Alle 5 Sekunden neu laden

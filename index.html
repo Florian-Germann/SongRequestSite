@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Song Abgabe</title>
+    <link rel="icon" type="image/png" href="/images/Heruntergeladen.png" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Song-Abgabe Formular</h1>
+
+        <label for="songname">Songname</label>
+        <input type="text" id="songname" name="songname" placeholder="Gib den Songnamen ein">
+
+        <label for="kuenstler">Künstler</label>
+        <input type="text" id="kuenstler" name="kuenstler" placeholder="Gib den Künstlernamen ein">
+
+        <label for="name">Dein Name</label>
+        <input type="text" id="name" name="name" placeholder="Gib deinen Namen ein">
+
+        <button type="button" onclick="pruefeUndSenden()">Abgeben</button>
+
+        <p id="meldung" class="meldung"></p>
+    </div>
+
+    <script language="javascript" type="text/javascript" src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+</body>
+</html>

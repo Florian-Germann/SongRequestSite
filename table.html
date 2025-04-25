@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Songwünsche</title>
+    <link rel="icon" type="image/png" href="/images/Heruntergeladen.png" />
+    <link rel="stylesheet" href="styletable.css">
+</head>
+<body>
+    <h1>Alle Songwünsche</h1>
+
+    <table id="wuenscheTabelle">
+        <thead>
+            <tr>
+                <th>Songname</th>
+                <th>Künstler</th>
+                <th>Von</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamisch gefüllt -->
+        </tbody>
+    </table>
+
+    <div class="center">
+        <button onclick="aeltestenWunschLoeschen()">Ältesten Wunsch löschen</button>
+    </div>
+
+    <script language="javascript" type="text/javascript" src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Songwunsch abgeben</title>
+  <script defer src="script.js"></script>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; padding: 40px; }
+    input, button { padding: 10px; margin: 5px 0; width: 100%; }
+    #meldung { margin-top: 15px; font-weight: bold; }
+    .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Songwunsch</h2>
+    <input id="songname" placeholder="Songname" />
+    <input id="kuenstler" placeholder="Künstler" />
+    <input id="name" placeholder="Dein Name" />
+    <button onclick="pruefeUndSenden()">Wunsch absenden</button>
+    <div id="meldung"></div>
+  </div>
+</body>
+</html>

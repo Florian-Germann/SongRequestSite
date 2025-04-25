@@ -1,46 +1,56 @@
 // Nur für index.html – Wunsch absenden
 function pruefeUndSenden() {
-    const songname = document.getElementById("songname").value.trim();
-    const kuenstler = document.getElementById("kuenstler").value.trim();
-    const name = document.getElementById("name").value.trim();
-    const meldung = document.getElementById("meldung");
-  
-    const letzteAbgabe = parseInt(localStorage.getItem("letzteAbgabe"), 10);
-    const jetzt = Date.now();
-  
-    if (letzteAbgabe && jetzt - letzteAbgabe < 5 * 60 * 1000) {
-      const verbleibend = Math.ceil((5 * 60 * 1000 - (jetzt - letzteAbgabe)) / 1000);
-      meldung.textContent = `Bitte warte noch ${verbleibend} Sekunden, bevor du erneut abgibst.`;
-      meldung.style.color = "red";
-      return;
-    }
-  
-    if (!songname || !kuenstler || !name) {
-      meldung.textContent = "Bitte fülle alle Felder aus!";
-      meldung.style.color = "red";
-      return;
-    }
-  
-    fetch("/wunsch", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ songname, kuenstler, name })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.erfolg) {
-          meldung.textContent = "Vielen Dank! Dein Wunsch wurde erfolgreich abgegeben.";
-          meldung.style.color = "green";
-          localStorage.setItem("letzteAbgabe", jetzt);
-          document.getElementById("songname").value = "";
-          document.getElementById("kuenstler").value = "";
-          document.getElementById("name").value = "";
-        } else {
-          meldung.textContent = "Fehler beim Absenden!";
-          meldung.style.color = "red";
-        }
-      });
+  const songname = document.getElementById("songname").value.trim();
+  const kuenstler = document.getElementById("kuenstler").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const meldung = document.getElementById("meldung");
+  const letzteAbgabe = localStorage.getItem("letzteAbgabe");
+  const jetzt = Date.now();
+
+  if (letzteAbgabe && jetzt - letzteAbgabe < 5 * 60 * 1000) {
+    const verbleibend = Math.ceil((5 * 60 * 1000 - (jetzt - letzteAbgabe)) / 1000);
+    meldung.textContent = `Bitte warte noch ${verbleibend} Sekunden, bevor du erneut abgibst.`;
+    meldung.style.color = "red";
+    return;
   }
+
+  if (songname === "" || kuenstler === "" || name === "") {
+    meldung.textContent = "Bitte fülle alle Felder aus!";
+    meldung.style.color = "red";
+    return;
+  }
+
+  // Anfrage an das Backend senden
+  fetch("/wunsch", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ songname, kuenstler, name })
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Fehler bei der Übertragung.");
+      }
+      return res.json();
+    })
+    .then(data => {
+      meldung.textContent = "Vielen Dank! Dein Wunsch wurde erfolgreich abgegeben.";
+      meldung.style.color = "green";
+
+      // Zeit speichern & Felder leeren
+      localStorage.setItem("letzteAbgabe", jetzt);
+      document.getElementById("songname").value = "";
+      document.getElementById("kuenstler").value = "";
+      document.getElementById("name").value = "";
+    })
+    .catch(err => {
+      meldung.textContent = "Fehler beim Senden deines Wunsches.";
+      meldung.style.color = "red";
+      console.error(err);
+    });
+}
+
   
   // Nur für wuensche.html – Wünsche anzeigen
   function ladeWuensche() {

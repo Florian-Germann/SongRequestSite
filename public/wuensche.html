@@ -2,33 +2,111 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Alle Songwünsche</title>
-  <script defer src="script.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Songwünsche</title>
   <style>
-    body { font-family: Arial; background: #eef2f5; padding: 40px; }
-    table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    th, td { padding: 12px 15px; border-bottom: 1px solid #ddd; }
-    thead { background-color: #3498db; color: white; }
-    tr:nth-child(even) { background-color: #f9f9f9; }
-    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; background-color: #e74c3c; color: white; border: none; border-radius: 6px; cursor: pointer; }
-    button:hover { background-color: #c0392b; }
-    .center { text-align: center; }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #1e1e2f;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #2b2b3d;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      max-width: 700px;
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 24px;
+      color: #ffcc00;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #444;
+    }
+
+    th {
+      background-color: #3a3a50;
+    }
+
+    tr:nth-child(even) {
+      background-color: #34344a;
+    }
+
+    button {
+      background-color: #ffcc00;
+      color: black;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #e6b800;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+        border-radius: 12px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      th, td {
+        font-size: 14px;
+        padding: 8px;
+      }
+
+      button {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Alle Songwünsche</h1>
-  <table id="wuenscheTabelle">
-    <thead>
-      <tr>
-        <th>Songname</th>
-        <th>Künstler</th>
-        <th>Von</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-  <div class="center">
-    <button onclick="aeltestenWunschLoeschen()">Ältesten Wunsch löschen</button>
+  <div class="container">
+    <h1>🎶 Aktuelle Songwünsche</h1>
+    <table id="wuenscheTabelle">
+      <thead>
+        <tr>
+          <th>Song</th>
+          <th>Künstler</th>
+          <th>Von</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button onclick="loescheAeltesten()">Ältesten Wunsch löschen</button>
   </div>
+
+  <script src="wuensche.js"></script>
 </body>
 </html>
